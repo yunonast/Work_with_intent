@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Work_with_Intent</string>
+    <string name="next_activity">Следующий экран</string>
+    <string name="Hello">Привет!</string>
+</resources>
