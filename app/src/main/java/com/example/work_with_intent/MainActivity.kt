@@ -41,12 +41,24 @@ class MainActivity : AppCompatActivity() {
         //Далее код для вызова звонка при нажатии кнопки
         // В манифесте прописать разрешение на звонки <uses-permission android:name="android.permission.CALL_PHONE" />
 
-        nextActivityButton.setOnClickListener {
+        /*nextActivityButton.setOnClickListener {
             val phoneNumberUri = Uri.parse("tel: +79201234567")
 
             val callIntent = Intent(Intent.ACTION_CALL, phoneNumberUri)
 
             startActivity(callIntent)
+
+        }*/
+
+        //Теперь код для показа чузера (выборщика) браузера при нажатии кнопки. Работает только, если в телефоне несколько браузеров установлено.
+        nextActivityButton.setOnClickListener {
+            val googleLink = Uri.parse("https://google.com") //обязательно парсить в uri, так как интент не работает со стрингом.
+
+            val openBrowserIntent = Intent(Intent.ACTION_VIEW, googleLink)
+
+            val chooser = Intent.createChooser(openBrowserIntent, "Выбери браузер") // текст - это надпись при появлении чузера
+
+            startActivity(chooser)
 
         }
     }
