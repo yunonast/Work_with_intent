@@ -1,6 +1,7 @@
 package com.example.work_with_intent
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,14 +19,35 @@ class MainActivity : AppCompatActivity() {
 
         nextActivityButton = findViewById(R.id.next_activity_button)
 
-        nextActivityButton.setOnClickListener {
+        //Это код для запуска второй активити с текстом
+        /*nextActivityButton.setOnClickListener {
             val secondActivityIntent: Intent= Intent(this,SecondActivity::class.java)
             secondActivityIntent.putExtra(HELLO_KEY, "Привет от Тани")
 
             startActivity(secondActivityIntent)
 
+        }*/
+
+        //А это код для запуска браузера при нажатии той же кнопки
+        /* nextActivityButton.setOnClickListener {
+
+            val googleLink = Uri.parse("https://google.com") //обязательно парсить в uri, так как интент не работает со стрингом.
+
+            val openBrowserIntent = Intent(Intent.ACTION_VIEW, googleLink)
+
+            startActivity(openBrowserIntent)
+        }*/
+
+        //Далее код для вызова звонка при нажатии кнопки
+        // В манифесте прописать разрешение на звонки <uses-permission android:name="android.permission.CALL_PHONE" />
+
+        nextActivityButton.setOnClickListener {
+            val phoneNumberUri = Uri.parse("tel: +79201234567")
+
+            val callIntent = Intent(Intent.ACTION_CALL, phoneNumberUri)
+
+            startActivity(callIntent)
+
         }
-
-
     }
 }
